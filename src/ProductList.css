@@ -106,6 +106,16 @@ body {
     transition: background-color 0.3s ease-in-out;
     margin-top: 10px;
 }
+.btn-disabled {
+    background-color: grey;
+    opacity: 0.5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: not-allowed;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+}
 
 .product-button:hover {
     background-color: #c0392b;
