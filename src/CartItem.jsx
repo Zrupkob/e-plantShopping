@@ -3,39 +3,43 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
+// Component for handling the items in the cart
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart.items); // The cart here is an array that contains the items from the cart stored in the state
+  const dispatch = useDispatch(); // Since we use dispatch later, it should be declared here
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     const total = cart.reduce((sum, item) => sum + item.quantity * parseFloat(item.cost.substring(1)), 0);
-   return total;
+    return total;
   };
 
+  // This handles the Continue Shopping button
   const handleContinueShopping = (e) => {
     onContinueShopping(e);
   };
 
+  // This handles the Checkout button
   const handleCheckoutShopping = () => {
-    alert('Functionality to be added for future reference');
+    alert('Functionality to be added for future reference. Coming soon.');
   };
 
-
-
+  // This handles the increase of item quantity in the cart
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
+  // This handles the decrease of the item quantity in the cart
   const handleDecrement = (item) => {
     if (item.quantity > 1 ) {
         dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
         dispatch(removeItem(item.name));
     }
- 
   };
 
+  // This handles item removal from the cart
   const handleRemove = (item) => {
     dispatch(removeItem(item.name));
   };
@@ -79,5 +83,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-
